@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChatService } from '../services/chat.service';
 import { AuthService } from '../services/auth.service';
-import { ChatMessage } from '../models/chat-message.model';
+import { ChatMessage } from '../modelos/chat-message.model';
 
 @Component({
   selector: 'app-message',
@@ -31,4 +31,12 @@ export class MessageComponent implements OnInit {
     this.userEmail = chatMessage.email;
     this.userName = chatMessage.userName;
   }
+
+  deleteMessage() {
+    if (confirm("¿Estás seguro que deseas eliminar este mensaje?")) {
+
+      console.log("¡Mensaje Eliminado!");
+    }
+  }
+
 }

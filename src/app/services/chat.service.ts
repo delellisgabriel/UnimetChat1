@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../services/auth.service';
 import * as firebase from 'firebase/app';
 
-import { ChatMessage } from '../models/chat-message.model';
+import { ChatMessage } from '../modelos/chat-message.model';
 
 @Injectable()
 export class ChatService {
@@ -31,13 +31,17 @@ export class ChatService {
 
   getUser() {
     const userId = this.user.uid;
-    const path = `/users/${userId}`;
+    const path = `/usuarios/${userId}`;
     return this.db.object(path);
   }
 
   getUsers() {
-    const path = '/users';
-    return this.db.list(path);
+    const path = '/usuarios';
+    return this.db.list(path, {
+      query: {
+        limitToFirst: 10
+      }
+    });
   }
 
   sendMessage(msg: string) {
@@ -50,18 +54,22 @@ export class ChatService {
       userName: this.userName,
       email: email
     });
-
-    console.log('llamando sendMessage()!');
+    console.log('¡Mensaje Enviado!');
   }
 
   getMessages(): FirebaseListObservable<ChatMessage[]> {
-    // query to create our message feed binding
+    console.log('Actualizando Lista de Mensajes...');
+    // Query para crear el enlace de feed de mensajes
     return this.db.list('messages', {
       query: {
-        limitToLast: 25,
+        limitToLast: 20,
         orderByKey: true
       }
     });
+  }
+
+  deleteMessage(msg: string) {
+
   }
 
   getTimeStamp() {

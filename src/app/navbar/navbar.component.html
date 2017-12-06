@@ -1,4 +1,4 @@
-<div class="navBar">
+<!--<div class="navBar hide-on-small-only">
   <div id="logo"></div>
   <div id="heading"><a routerLink="/">UnimetChat</a></div>
   <div class="links">
@@ -9,10 +9,26 @@
       <a *ngIf="!(user|async)?.uid" routerLink="/signup">Registrarse</a>
     </span>
     <span>
-      <span id="userEmail" *ngIf="(user|async)?.uid">Hello, {{userEmail}}</span>
+      <span id="userEmail" *ngIf="(user|async)?.uid">Bienvenido, {-{userEmail}}</span>
     </span>
     <span>
       <a *ngIf="(user|async)?.uid" href="#" (click)="logout()">Logout</a>
     </span>
   </div>
-</div>
+</div>-->
+<nav class="grey darken-4" role="navigation">
+  <div class="nav-wrapper container">
+    <a id="logo-container" href="#" class="brand-logo"><span style="color: #F37D01;">UNIMET</span>Chat</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a *ngIf="!(user|async)?.uid" href="" (click)="login()">Entrar</a></li>
+      <li><a *ngIf="!(user|async)?.uid" routerLink="/signup">Registrarse</a></li>
+      <li><span id="userEmail" *ngIf="(user|async)?.uid">Bienvenido, {{userEmail}}</span></li>
+      <li><a *ngIf="(user|async)?.uid" href="#" (click)="logout()">Salir</a></li>
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a href="#">Navbar Link</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+</nav>

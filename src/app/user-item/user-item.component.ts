@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChatService } from '../services/chat.service';
-import { User } from '../models/user.model';
+import { User } from '../modelos/user.model';
 
 @Component({
   selector: 'app-user-item',
